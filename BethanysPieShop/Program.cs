@@ -5,6 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IPieRepository, PieRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+
 
 builder.Services.AddScoped<IShoppingCart, ShoppingCart>(ShoppingCart.GetCart);
 builder.Services.AddSession();
