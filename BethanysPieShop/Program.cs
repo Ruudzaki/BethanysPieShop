@@ -14,8 +14,8 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddControllersWithViews()
     .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
-
 builder.Services.AddRazorPages();
+builder.Services.AddServerSideBlazor();
 
 builder.Services.AddDbContext<BethanysPieShopDbContext>(options => {
     options.UseSqlServer(
@@ -39,7 +39,10 @@ app.MapDefaultControllerRoute();//"{controller=Home}/{action=Index}/{id?}")
 //    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 //app.MapControllers();  // to have just an API Controllers
+
 app.MapRazorPages();
+app.MapBlazorHub();
+app.MapFallbackToPage("/app/{*catchall}", "/App/Index");
 
 DbInitializer.Seed(app);
 app.Run();
