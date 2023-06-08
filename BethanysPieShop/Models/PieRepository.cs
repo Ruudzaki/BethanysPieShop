@@ -16,4 +16,8 @@ public class PieRepository : IPieRepository {
     public Pie? GetPieById(int pieId) {
         return _bethanysPieShopDbContext.Pies.FirstOrDefault(p => p.PieId == pieId);
     }
+
+    public IEnumerable<Pie> SearchPies(string searchQuery) {
+        return _bethanysPieShopDbContext.Pies.Where(p => p.Name.Contains(searchQuery));
+    }
 }
